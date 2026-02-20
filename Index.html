@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zyana Restaurant Menu</title>
+
+<style>
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:15px;
+}
+
+.container{
+    max-width:520px;
+    margin:auto;
+    background:white;
+    padding:18px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+h1{
+    text-align:center;
+    color:#d35400;
+}
+
+.section-title{
+    background:#d35400;
+    color:white;
+    padding:10px;
+    border-radius:6px;
+    margin-top:20px;
+    font-weight:bold;
+}
+
+.menu-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+}
+
+.item-name{
+    font-weight:600;
+}
+
+.price{
+    color:#27ae60;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.qty-box{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.qty-btn{
+    background:#d35400;
+    color:white;
+    border:none;
+    width:28px;
+    height:28px;
+    border-radius:5px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.qty-number{
+    min-width:22px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.order-form{
+    margin-top:25px;
+    background:#fff3e0;
+    padding:15px;
+    border-radius:10px;
+}
+
+input,select{
+    width:100%;
+    padding:10px;
+    margin-bottom:12px;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+.summary{
+    background:white;
+    padding:10px;
+    border-radius:6px;
+    margin-bottom:12px;
+    font-size:14px;
+}
+
+.wa-button{
+    background:#25D366;
+    color:white;
+    border:none;
+    padding:15px;
+    width:100%;
+    font-size:18px;
+    font-weight:bold;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.total{
+    font-weight:bold;
+    color:#d35400;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+<h1>Zyana Restaurant Menu</h1>
+
+<div id="menu"></div>
+
+<div class="order-form">
+<h3>📝 Order Details</h3>
+<input type="text" id="custName" placeholder="Your Name">
+<select id="tableNo">
+<option value="1">Table 1</option>
+<option value="2">Table 2</option>
+<option value="3">Table 3</option>
+<option value="4">Table 4</option>
+</select>
+<div class="summary" id="summaryBox">No items selected</div>
+<button onclick="sendWhatsApp()" class="wa-button">Place Order via WhatsApp</button>
+</div>
+</div>
+
+<script>
+const menuData=[
+{cat:"☕ Tiffin",items:[
+["Idli (2)",40],
+["Masala Dosa",60],
+["Vada (2)",50],
+["Ghee podi idly",50],
+["Upma",60],
+["Puri (3)",60],
+["Mysore Bajji (3)",40],
+["Ragi Dosa",55],
+["Plain Dosa",50]
+]},
+{cat:"🍛 Main Course (Biryani & Meals)",items:[
+["Chicken Biryani",250],
+["Mutton Biryani",350],
+["Veg Biryani",180],
+["Thali",120],
+["Paneer Butter Masala",150],
+["Naan / Roti",30],
+["Veg Fried Rice",60],
+["Curd Rice",40],
+["Butter Chicken",200],
+["Chicken Curry",150],
+["Mutton Curry",300]
+]},
+{cat:"🥤 Cool Drinks & Desserts",items:[
+["Soft Drinks",40],
+["Almond Milk",50],
+["Gulab Jamun (2)",60],
+["Cold Coffee",70],
+["Fresh Lime Soda",40],
+["Fruit Juices",50],
+["Milk Shakes",100],
+["Filter Coffee",50],
+["Ginger Tea",20],
+["Mineral Water (1L)",20],
+["Ice Cream",35]
+]}
+];
+
+const order={};
+let total=0;
+
+// BUILD MENU
+const menuDiv=document.getElementById("menu");
+
+menuData.forEach(section=>{
+let html=`<div class="section-title">${section.cat}</div>`;
+section.items.forEach(item=>{
+const id=item[0];
+html+=`
+<div class="menu-card">
+<div>
+<div class="item-name">${item[0]}</div>
+<div class="price">₹${item[1]}</div>
+</div>
+<div class="qty-box">
+<button class="qty-btn" onclick="changeQty('${id}',${item[1]},-1)">-</button>
+<div id="${id}" class="qty-number">0</div>
+<button class="qty-btn" onclick="changeQty('${id}',${item[1]},1)">+</button>
+</div>
+</div>`;
+});
+menuDiv.innerHTML+=html;
+});
+
+function changeQty(item,price,change){
+const el=document.getElementById(item);
+let qty=parseInt(el.innerText);
+qty+=change;
+if(qty<0)qty=0;
+el.innerText=qty;
+if(qty===0)delete order[item];
+else order[item]={qty,price};
+updateSummary();
+}
+
+function updateSummary(){
+let box=document.getElementById("summaryBox");
+let text="";
+total=0;
+for(let item in order){
+let t=order[item].qty*order[item].price;
+total+=t;
+text+=`${item} x ${order[item].qty} = ₹${t}<br>`;
+}
+if(text==="")text="No items selected";
+else text+=`<hr>Total: ₹${total}`;
+box.innerHTML=text;
+}
+
+function sendWhatsApp(){
+const myNumber="916302031996";
+const name=document.getElementById("custName").value;
+const table=document.getElementById("tableNo").value;
+
+if(!name){alert("Enter your name");return;}
+if(Object.keys(order).length===0){alert("Select items");return;}
+
+let itemsText="";
+for(let item in order){
+itemsText+=`${item} x ${order[item].qty}%0A`;
+}
+
+const text=`*New Order Received!*%0A----------------%0A*Name:* ${name}%0A*Table:* ${table}%0A*Items:*%0A${itemsText}*Total:* ₹${total}%0A----------------`;
+
+window.open(`https://wa.me/${myNumber}?text=${text}`,"_blank");
+}
+</script>
+</body>
+  </html>
