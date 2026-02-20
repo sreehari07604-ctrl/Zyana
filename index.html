@@ -1,1 +1,79 @@
-<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Restaurant Menu</title>\n</head>\n<body>\n    <h1>Welcome to Our Restaurant</h1>\n    <h2>Menu</h2>\n    <ul>\n        <li>Starter: Soup of the Day</li>\n        <li>Main Course: Grilled Salmon</li>\n        <li>Dessert: Chocolate Lava Cake</li>\n    </ul>\n    <footer>\n        <p>Open Daily from 9 AM to 10 PM</p>\n    </footer>\n</body>\n</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zyana Restaurant Menu</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        h1, h2, h3 { color: #2c3e50; }
+        .menu-section { margin-bottom: 30px; }
+        .menu-item { margin: 10px 0; }
+        .order-form { margin-top: 30px; }
+        .form-field { margin-bottom: 15px; }
+        .form-field label { display: block; }
+        .form-field input, .form-field textarea { width: 100%; padding: 8px; }
+        .submit-button { padding: 10px 15px; background-color: #27ae60; color: #fff; border: none; cursor: pointer; }
+        .submit-button:hover { background-color: #218c4b; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Zyana Restaurant</h1>
+    
+    <div class="menu-section">
+        <h2>Breakfast Items</h2>
+        <div class="menu-item">Pancakes - $5</div>
+        <div class="menu-item">Omelettes - $6</div>
+        <div class="menu-item">Fruit Salad - $4</div>
+    </div>
+
+    <div class="menu-section">
+        <h2>Main Courses</h2>
+        <div class="menu-item">Grilled Chicken - $12</div>
+        <div class="menu-item">Vegetarian Pasta - $10</div>
+        <div class="menu-item">Fish Curry - $13</div>
+    </div>
+
+    <div class="menu-section">
+        <h2>Drinks</h2>
+        <div class="menu-item">Coffee - $2</div>
+        <div class="menu-item">Tea - $2</div>
+        <div class="menu-item">Soft Drinks - $3</div>
+    </div>
+
+    <div class="menu-section">
+        <h2>Desserts</h2>
+        <div class="menu-item">Chocolate Cake - $4</div>
+        <div class="menu-item">Ice Cream - $3</div>
+        <div class="menu-item">Fruit Tart - $5</div>
+    </div>
+
+    <div class="order-form">
+        <h2>Order Your Meal</h2>
+        <div class="form-field">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-field">
+            <label for="order">Your Order:</label>
+            <textarea id="order" name="order" rows="4" required></textarea>
+        </div>
+        <div class="form-field">
+            <label for="phone">Your Phone:</label>
+            <input type="text" id="phone" name="phone" required>
+        </div>
+        <button class="submit-button" onclick="sendOrder()">Send Order via WhatsApp</button>
+    </div>
+
+    <script>
+        function sendOrder() {
+            let name = document.getElementById('name').value;
+            let order = document.getElementById('order').value;
+            let phone = document.getElementById('phone').value;
+            let message = `Name: ${name}\nOrder: ${order}`;
+            let whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
