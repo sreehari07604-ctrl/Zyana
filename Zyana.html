@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart WhatsApp Restaurant Management</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        h1 { text-align: center; color: #d35400; text-transform: uppercase; }
+       
+        .section-title { background: #d35400; color: white; padding: 10px; border-radius: 5px; margin-top: 20px; font-weight: bold; }
+       
+        .menu-item { display: flex; justify-content: space-between; padding: 12px 5px; border-bottom: 1px solid #eee; }
+        .item-name { font-weight: 500; font-size: 16px; }
+        .price { color: #27ae60; font-weight: bold; }
+
+        .order-form { margin-top: 30px; background: #fff3e0; padding: 20px; border-radius: 10px; border: 1px solid #ffb74d; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
+       
+        .wa-button { background-color: #25D366; color: white; border: none; padding: 15px; width: 100%; font-size: 18px; font-weight: bold; border-radius: 8px; cursor: pointer; text-align: center; display: block; text-decoration: none; }
+        .wa-button:hover { background-color: #128C7E; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1> zyana restaurant menu</h1>
+
+    <div class="section-title">☕ Tiffin (Breakfast)</div>
+    <div class="menu-item"><span class="item-name">Idli (2)</span> <span class="price">₹40</span></div>
+    <div class="menu-item"><span class="item-name">Masala Dosa</span> <span class="price">₹60</span></div>
+    <div class="menu-item"><span class="item-name">Vada (2)</span> <span class="price">₹50</span></div>
+    <div class="menu-item"><span class="item-name">Ghee podi idly</span> <span class="price">₹50</span></div>
+    <div class="menu-item"><span class="item-name">Upma</span> <span class="price">₹60</span></div>
+    <div class="menu-item"><span class="item-name">Puri(3)</span> <span class="price">₹60</span></div>
+    <div class="menu-item"><span class="item-name">Mysore Bajji (3)</span> <span class="price">₹40</span></div>
+    <div class="menu-item"><span class="item-name">Ragi Dosa</span> <span class="price">₹55</span></div>
+    <div class="menu-item"><span class="item-name">Plain Dosa</span> <span class="price">₹50</span></div>
+
+    <div class="section-title">🍛 Main Course (Biryani & Meals)</div>
+    <div class="menu-item"><span class="item-name">Chicken Biryani</span> <span class="price">₹250</span></div>
+    <div class="menu-item"><span class="item-name">Mutton Biryani</span> <span class="price">₹350</span></div>
+    <div class="menu-item"><span class="item-name">Veg Biryani</span> <span class="price">₹180</span></div>
+    <div class="menu-item"><span class="item-name">Thali</span> <span class="price">₹120</span></div>
+    <div class="menu-item"><span class="item-name">paneer butter masala</span> <span class="price">₹150</span></div>
+    <div class="menu-item"><span class="item-name">Naan/roti</span> <span class="price">₹30</span></div>
+    <div class="menu-item"><span class="item-name">Veg Fried Rice</span> <span class="price">₹60</span></div>
+    <div class="menu-item"><span class="item-name">Curd Rice</span> <span class="price">₹40</span></div>
+    <div class="menu-item"><span class="item-name">Butter Chicken</span> <span class="price">₹200</span></div>
+    <div class="menu-item"><span class="item-name">Chicken Curry</span> <span class="price">₹150</span></div>
+    <div class="menu-item"><span class="item-name">Mutton Curry</span> <span class="price">₹300</span></div>
+
+    <div class="section-title">🥤 Cool Drinks & Desserts</div>
+    <div class="menu-item"><span class="item-name">Soft Drinks</span> <span class="price">₹40</span></div>
+    <div class="menu-item"><span class="item-name">Almond Milk</span> <span class="price">₹50</span></div>
+    <div class="menu-item"><span class="item-name">Gulab Jamun (2)</span> <span class="price">₹60</span></div>
+    <div class="menu-item"><span class="item-name">Cold Coffee</span> <span class="price">₹70</span></div>
+    <div class="menu-item"><span class="item-name">Fresh Lime Soda</span> <span class="price">₹40</span></div>
+    <div class="menu-item"><span class="item-name">Fruit Juices</span> <span class="price">₹50</span></div>
+    <div class="menu-item"><span class="item-name">Milk Shakes</span> <span class="price">₹100</span></div>
+    <div class="menu-item"><span class="item-name">Filter Coffee</span> <span class="price">₹50</span></div>
+    <div class="menu-item"><span class="item-name">Ginger Tea</span> <span class="price">₹20</span></div>
+    <div class="menu-item"><span class="item-name">Mineral Water(1 Liter)</span> <span class="price">₹20</span></div>
+    <div class="menu-item"><span class="item-name">Ice Cream</span> <span class="price">₹35</span></div>
+    
+    <div class="order-form">
+        <h3>📝 Order Now</h3>
+        <label>Your Name:</label>
+        <input type="text" id="custName" placeholder="Please Write Your Name">
+
+        <label>Table Number:</label>
+        <select id="tableNo">
+            <option value="1">Table 1</option>
+            <option value="2">Table 2</option>
+            <option value="3">Table 3</option>
+            <option value="4">Table 4</option>
+        </select>
+
+        <label>What do you want? (List the items):</label>
+        <textarea id="orderItems" rows="3" placeholder="ex: 1 Biryani, 2 Thums Up"></textarea>
+
+        <button onclick="sendWhatsApp()" class="wa-button">
+            Place Order via WhatsApp
+        </button>
+    </div>
+</div>
+
+<script>
+    function sendWhatsApp() {
+        // Your WhatsApp number (91 followed by 10-digit number)
+        const myNumber = "916302031996";
+       
+        const name = document.getElementById('custName').value;
+        const table = document.getElementById('tableNo').value;
+        const items = document.getElementById('orderItems').value;
+
+        if (name === "" || items === "") {
+            alert("Please provide your name and order details!");
+            return;
+        }
+
+        // WhatsApp message format
+        const text = `*New Order Received!*%0A--------------------------%0A*Name:* ${name}%0A*Table:* Table ${table}%0A*Items:* ${items}%0A--------------------------`;
+
+        const waUrl = `https://wa.me/${myNumber}?text=${text}`;
+       
+        // Opens WhatsApp
+        window.open(waUrl, '_blank').focus();
+    }
+</script>
+
+</body>
+</html>
